@@ -10,7 +10,8 @@ app = FastAPI()
 # Initialize Jinja2 templates
 templates = Jinja2Templates(directory="templates")
 
-
+#Now, when you start the server and visit localhost:8000/,
+# it will automatically redirect to localhost:8000/create_resume_form/.
 #for '/' handler it will redirect to '/create_resume_form/' endpoint
 @app.get("/", include_in_schema=False)  # Set include_in_schema=False to hide it in docs
 async def redirect_to_form():
