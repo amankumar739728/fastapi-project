@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Form, Request, UploadFile, File,HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 import json
 import base64
@@ -9,6 +9,13 @@ app = FastAPI()
 
 # Initialize Jinja2 templates
 templates = Jinja2Templates(directory="templates")
+
+
+#for '/' handler it will redirect to '/create_resume_form/' endpoint
+@app.get("/", include_in_schema=False)  # Set include_in_schema=False to hide it in docs
+async def redirect_to_form():
+    response = RedirectResponse(url='/create_resume_form/')
+    return response
 
 # Create a route for the resume creation form
 @app.post("/create_resume/")
